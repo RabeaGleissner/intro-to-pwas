@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/solarized.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Progressive Web Apps</h1>
+          <h3 class ="fragment">and Manifests and Service Workers</h3>
+          <h3 class ="fragment">with demo! 💥 </h3>
+          <aside class="notes" data-markdown>
+            - Who knows what progressive web apps are?
+            - Who has used Service Worker before?
+          </aside>
+        </section>
+        <section>
+          <h2>What are Progressive Web Apps?</h2>
+          <blockquote>
+            <p>"Progressive Web Apps uses modern web capabilities to deliver an app-like user experience.</p>
+            <p>They evolve from pages in browser tabs to immersive, top-level apps, maintaining the web's low friction at every moment."</p>
+          </blockquote>
+          <h6>- Addy Osmani</h6>
+          <aside class="notes" data-markdown>
+            - I think Addy Osmani has a good, succinct explanation
+            - for those who don't know him, he's an engineer at Google and has some famous open source projects like Yeoman and Todo MVC (I personally think we should open a competitor website called TTT OO)
+            - so it's a website that appears like a native app to the user
+            - "modern web capabilities" is an important phrase here but we'll come to that later
+            - they morphe from a normal website to immersive apps
+          </aside>
+        </section>
+        <section>
+          <section>
+            <h2>Characteristics of a PWA</h2>
+            <p class="fragment">Homescreen access</p>
+            <p class="fragment">Full-screen mode</p>
+            <aside class="notes" data-markdown>
+              <strong>Homescreen access</strong>
+              - when a user visits a website a couple of times, they see a prompt to ask if they wish to add the app to the homescreen of their device. This is called a "smart install banner"
+
+              <strong>Full screen mode</strong>
+              - when opening the app through tapping on the icon on the homescren, the browser tabs and URL bar disappear, so it looks like you're looking at a native app.
+
+            </aside>
+          </section>
+          <section>
+            <img  src="add-to-home-screen.gif" >
+            <aside class="notes" data-markdown>
+            </aside>
+          </section>
+          <section>
+            <h2>Characteristics of a PWA</h2>
+            <p>Add to the homescreen</p>
+            <p>Full-screen mode</p>
+            <p class="fragment">Splash screen</p>
+            <p class="fragment">Push notifications</p>
+            <p class="fragment">Exists in app switcher</p>
+            <p class="fragment">Uses HTTPs</p>
+            <p class="fragment">Works offline! 👯</p>
+            <aside class="notes" data-markdown>
+              <strong>Splash screen</strong>
+              - can be implemented to display when the app opens
+
+              <strong>Push notifications</strong>
+              - You  might know this from Slack when you use it in the browser. It asks you if you want to receive push notifications. With PWAs it's possible to even send push notifications when the app is closed.
+
+              <strong>Android app switcher</strong>
+              - When you're switching between apps it looks like an app with its own icon. It doesn't look like it's part of Chrome.
+
+              <strong>Uses HTTPS</strong>
+              - so it's very secure. We'll come to it later why it only works with HTTPS
+
+              <strong>Offline</strong>
+              - and it finally solves a problem that has existed ever since the internet was invented: you have to be online to use it.
+            </aside>
+          </section>
+        </section>
+        <section>
+          <h2>Pros and Cons</h2>
+          <p class="fragment">Responsiveness 👍</p>
+          <p class="fragment">Linkable 👍</p>
+          <p class="fragment">No app stores 👍</p>
+          <p class="fragment">Browser support 👎</p>
+          <aside class="notes" data-markdown>
+            Responsive
+
+            - as developers we don't need to build different apps for iOS and Android and Windows phone, but only one responsive website is enough.
+
+            Linkable
+
+            - as in: it has a URL. Easier to share with others, but what's probably even more important is that search engines can find it and index it.
+
+            No app stores
+
+            - from a user perspective it's great because they don't need to download the app but they can just start using it straight away
+            - from a developer perspective we don't need to submit it to the app store and go through approval process but can iterate really quickly.
+
+            Browser support
+
+            - there is one big downside at the moment, as with any new shiny front end web technology... and that is browser support. At the moment only on Chrome for Android and Opera for Android. Firefox for Android it's in beta. MS Edge: under development and Webkit: under consideration. Which means for iPhone users: forget it. (For now.)
+            Webkit is a layout engine in browsers. Powers Safari.
+            Chromium based browsers are Chrome and Opera, it's a fork of Webkit.
+          </aside>
+        </section>
+        <section>
+          <h2>How is it all done?</h2>
+          <p class="fragment">Web app manifest</p>
+          <p class="fragment">Service worker</p>
+          <aside class="notes" data-markdown>
+            - both are currently W3C working drafts, so very early stages.
+            (working draft, then candidate recommendation, the proposed recommendation then W3C recommendation)
+          </aside>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Web app manifest
+
+              ```
+              <link rel="manifest" href="manifest.json">
+              ```
+            </script>
+
+            <aside class="notes" data-markdown>
+              - a json file
+              - include it in your HTML head
+              - supported by Chrome for Android, Android Webview and Opera mobile
+            </aside>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Web app manifest
+
+              ```json
+{
+  "name": "8th Light",
+  "short_name": "8L",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "white",
+  "description": "We craft software that is beautiful,
+  durable and shows pride in our worksmanship.",
+  "dir": "ltr",
+  "lang": "en-GB",
+  "orientation": "portrait",
+  "scope": "/myapp/",
+  "icons": [{
+    "src": "images/touch/homescreen48.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]
+}
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## name / short_name
+
+              ```json
+  "name": "8th Light",
+  "short_name": "8L"
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## start_url
+
+              ```json
+  "start_url": "."
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## display
+
+              ```json
+  "display": "standalone"
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## background_color
+
+              ```json
+  "background_color": "white"
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## dir
+
+              ```json
+  "dir": "ltr"
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## orientation
+
+              ```json
+  "orientation": "portrait"
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## scope
+
+              ```json
+  "scope": "/myapp/"
+
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## icons
+
+              ```json
+  "icons": [{
+    "src": "images/touch/homescreen48.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]
+
+              ```
+            </script>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+// More info https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+  history: true,
+
+  // More info https://github.com/hakimel/reveal.js#dependencies
+  dependencies: [
+  { src: 'plugin/markdown/marked.js' },
+  { src: 'plugin/markdown/markdown.js' },
+  { src: 'plugin/notes/notes.js', async: true },
+  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+  ]
+});
+    </script>
+  </body>
+</html>
