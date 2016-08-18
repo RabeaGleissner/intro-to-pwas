@@ -49,7 +49,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </aside>
         </section>
         <section>
-          <h2>Installing</h2>
+          <h2>XKCD knows it</h2>
           <img  src="installing.png" >
         </section>
 
@@ -145,7 +145,6 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
             <aside class="notes" data-markdown>
               - a json file
               - include it in your HTML head
-              - supported by Chrome for Android, Android Webview and Opera mobile
             </aside>
           </section>
           <section >
@@ -501,28 +500,22 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
               Enhanced online experience
 
               - by controlling the caching of content, so that it doesn't need to download certain files every time (for example stylesheets or javascript)
-              - could implement a network strategy that optimises the balance between cached content and "fresh content"
-              - fresh content would be your latest blog articles; cached content would be your style sheets and application shell for example.
               - pre-service worker there was (and still is) something called AppCache. Works in all browsers but Chrome, Firefox are planning to stop support for it. There were issues with it e.g. AppCache can't be partially updated, there were security issues with it and usability problems.
 
               Offline experience
 
               - you can define what happens when a user tries to use your site or app without a network connection. For example you could have an offline fallback page (the Guardian developer blog has a crossword puzzle)
-              - or you could download certain content that is in the user's click vicinity and if they go offline and click, they still see the pages loading
-              - obviously the user will have to have visited your website before while they were online. Service Worker is magic, but not THAT much magic.
 
               Background data synchronisation
 
               - service worker can be started up even when the user isn't on the website, so it can update its cache.
               - but from what I've read this capability is not available yet
-
-              And what do I hear you screaming?
             </aside>
           </section>
         </section>
         <section>
           <h2>Lifecycle of a service worker</h2>
-          <img  src="sw-lifecycle.png" >
+          <img style="max-height: 580px;"  src="sw-lifecycle.png" >
           <aside class="notes" data-markdown>
             - if your browser doesn't have a service worker yet for the website, then it needs to connect itself up first. It creates an install event, that we can listen for in our code.
             - during install step we typically cache some assets like stylesheet or front end JS file
@@ -538,6 +531,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
         <section>
           <h2>Demo time!</h2>
+          <aside class="notes" data-markdown>
+            - service worker heavily relies on the promises API.
+            - JavaScript is single threaded but with promises we can perform asynchronous computations.
+            - a Promise represents a single asynchronous operation that hasn't completed yet but is expected in the future
+            - can be chained with callback functions
+          </aside>
         </section>
         <section>
           <h2>Any questions?</h2>
