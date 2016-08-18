@@ -52,18 +52,19 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           <h2>Installing</h2>
           <img  src="installing.png" >
         </section>
+
         <section>
           <section>
             <h2>Characteristics of a PWA</h2>
             <p class="fragment">Homescreen access</p>
             <p class="fragment">Full-screen mode</p>
             <aside class="notes" data-markdown>
+              But let me describe in a bit more detail what PWAs can do.
               <strong>Homescreen access</strong>
               - when a user visits a website a couple of times, they see a prompt to ask if they wish to add the app to the homescreen of their device. This is called a "smart install banner"
 
               <strong>Full screen mode</strong>
               - when opening the app through tapping on the icon on the homescren, the browser tabs and URL bar disappear, so it looks like you're looking at a native app.
-
             </aside>
           </section>
           <section>
@@ -85,7 +86,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
               - can be implemented to display when the app opens
 
               <strong>Push notifications</strong>
-              - You  might know this from Slack when you use it in the browser. It asks you if you want to receive push notifications. With PWAs it's possible to even send push notifications when the app is closed.
+              - You  might know this from Slack when you use it in the browser. It asks you if you want to receive push notifications.
+              With PWAs it's possible to even send push notifications when the app is closed.
 
               <strong>Android app switcher</strong>
               - When you're switching between apps it looks like an app with its own icon. It doesn't look like it's part of Chrome.
@@ -131,7 +133,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           <p class="fragment">Service worker</p>
           <aside class="notes" data-markdown>
             - both are currently W3C working drafts, so very early stages.
-            (working draft, then candidate recommendation, the proposed recommendation then W3C recommendation)
+            (working draft, then candidate recommendation, then proposed recommendation then W3C recommendation)
           </aside>
         </section>
         <section>
@@ -464,7 +466,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </section>
         </section>
         <section>
-          <h2>Let's look at a real life manifest file on the Guardian developer blog.</h2>
+          <h2>Let's look at a real life manifest file.</h2>
              <aside class="notes" data-markdown>
                - you can see that they have some of the elements that I described above.
                - and they also have a service worker, which leads me to my next topic!
