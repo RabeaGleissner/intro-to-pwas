@@ -35,8 +35,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
         <section>
           <h2>What are Progressive Web Apps?</h2>
-          <blockquote>
-            <p>"Progressive Web Apps uses modern web capabilities to deliver an app-like user experience.</p>
+          <blockquote class ="fragment">
+            <p>"Progressive Web Apps use modern web capabilities to deliver an app-like user experience.</p>
             <p>They evolve from pages in browser tabs to immersive, top-level apps, maintaining the web's low friction at every moment."</p>
           </blockquote>
           <h6>- Addy Osmani</h6>
@@ -47,6 +47,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
             - "modern web capabilities" is an important phrase here but we'll come to that later
             - they morphe from a normal website to immersive apps
           </aside>
+        </section>
+        <section>
+          <h2>Installing</h2>
+          <img  src="installing.png" >
         </section>
         <section>
           <section>
@@ -131,42 +135,35 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </aside>
         </section>
         <section>
-          <section data-markdown>
-            <script type="text/template">
-              ## Web app manifest
-
-              ```
+          <section>
+            <h2>Web app manifest</h2>
+            <pre><code data-trim>
               <link rel="manifest" href="manifest.json">
-              ```
-            </script>
-
+            </code></pre>
             <aside class="notes" data-markdown>
               - a json file
               - include it in your HTML head
               - supported by Chrome for Android, Android Webview and Opera mobile
             </aside>
           </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## Web app manifest
-
-              ```json
+          <section >
+            <pre><code data-trim>
 {
   "name": "8th Light",
   "short_name": "8L",
   "start_url": ".",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "white",
   "description": "We craft software that is beautiful,
-  durable and shows pride in our worksmanship.",
+   durable and shows pride in our worksmanship.",
   "dir": "ltr",
   "lang": "en-GB",
   "orientation": "portrait",
   "scope": "/myapp/",
   "icons": [{
-    "src": "images/touch/homescreen48.png",
-    "sizes": "48x48",
-    "type": "image/png"
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
   }, {
   "src": "images/touch/homescreen72.png",
   "sizes": "72x72",
@@ -181,90 +178,31 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   "type": "image/png"
   }]
 }
-
-              ```
-            </script>
+            </code></pre>
+            <aside class="notes" >
+              - here's an example of a web app manifest file
+              - I'll go through some of the properties in a bit more detail now
+            </aside>
           </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## name / short_name
-
-              ```json
-  "name": "8th Light",
-  "short_name": "8L"
-
-              ```
-            </script>
-          </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## start_url
-
-              ```json
-  "start_url": "."
-
-              ```
-            </script>
-          </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## display
-
-              ```json
-  "display": "standalone"
-
-              ```
-            </script>
-          </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## background_color
-
-              ```json
-  "background_color": "white"
-
-              ```
-            </script>
-          </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## dir
-
-              ```json
-  "dir": "ltr"
-
-              ```
-            </script>
-          </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## orientation
-
-              ```json
-  "orientation": "portrait"
-
-              ```
-            </script>
-          </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## scope
-
-              ```json
-  "scope": "/myapp/"
-
-              ```
-            </script>
-          </section>
-          <section data-markdown>
-            <script type="text/template">
-              ## icons
-
-              ```json
+          <section>
+            <h2>name</h2>
+            <pre><code data-trim data-noescape>
+{
+ <mark> "name": "8th Light",</mark>
+  "short_name": "8L",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "white",
+  "description": "We craft software that is beautiful,
+   durable and shows pride in our worksmanship.",
+  "dir": "ltr",
+  "lang": "en-GB",
+  "orientation": "portrait",
+  "scope": "/myapp/",
   "icons": [{
-    "src": "images/touch/homescreen48.png",
-    "sizes": "48x48",
-    "type": "image/png"
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
   }, {
   "src": "images/touch/homescreen72.png",
   "sizes": "72x72",
@@ -278,10 +216,332 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   "sizes": "192x192",
   "type": "image/png"
   }]
-
-              ```
-            </script>
+}
+    </code></pre>
+            <aside class="notes" data-markdown>
+              - both meant for the user and will be displayed for example on a list of other applications or as a label for an icon
+            </aside>
           </section>
+
+          <section>
+            <h2>start_url</h2>
+            <pre><code data-trim data-noescape>
+{
+  "name": "8th Light",
+  "short_name": "8L",
+  <mark>"start_url": ".",</mark>
+  "display": "fullscreen",
+  "background_color": "white",
+  "description": "We craft software that is beautiful,
+   durable and shows pride in our worksmanship.",
+  "dir": "ltr",
+  "lang": "en-GB",
+  "orientation": "portrait",
+  "scope": "/myapp/",
+  "icons": [{
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]
+}
+            </code></pre>
+            <aside class="notes" data-markdown>
+              - specifies the URL that loads when the user launches the application from a device
+              - dot in this case means the same as /
+            </aside>
+          </section>
+
+          <section>
+            <h2>display</h2>
+            <pre><code data-trim data-noescape>
+{
+  "name": "8th Light",
+  "short_name": "8L",
+  "start_url": ".",
+  <mark>"display": "fullscreen",</mark>
+  "background_color": "white",
+  "description": "We craft software that is beautiful,
+   durable and shows pride in our worksmanship.",
+  "dir": "ltr",
+  "lang": "en-GB",
+  "orientation": "portrait",
+  "scope": "/myapp/",
+  "icons": [{
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]
+}
+            </code></pre>
+            <aside class="notes" data-markdown>
+              - the preferred display mode
+              - other values include
+              - fullscreen: no user agent is shown at all, fully immersive
+              - standalone: hardly any browser ui visible like a status bar (but no elements for navigation)
+              - browser: default; application opens in a conventional browser tab
+            </aside>
+          </section>
+
+          <section>
+            <h2>background_color</h2>
+            <pre><code data-trim data-noescape>
+{
+  "name": "8th Light",
+  "short_name": "8L",
+  "start_url": ".",
+  "display": "fullscreen",
+  <mark>"background_color": "white",</mark>
+  "description": "We craft software that is beautiful,
+   durable and shows pride in our worksmanship.",
+  "dir": "ltr",
+  "lang": "en-GB",
+  "orientation": "portrait",
+  "scope": "/myapp/",
+  "icons": [{
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]
+}
+            </code></pre>
+            <aside class="notes" data-markdown>
+              - defines the expected background color for the application. It's a repetition of what's in the stylesheet but the idea is that if the manifest is available before the stylesheet, then the app can already load the right colour background.
+            </aside>
+          </section>
+
+          <section>
+            <h2>orientation</h2>
+            <pre><code data-trim data-noescape>
+{
+  "name": "8th Light",
+  "short_name": "8L",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "white",
+  "description": "We craft software that is beautiful,
+   durable and shows pride in our worksmanship.",
+  "dir": "ltr",
+  "lang": "en-GB",
+  <mark>"orientation": "portrait",</mark>
+  "scope": "/myapp/",
+  "icons": [{
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]
+}
+            </code></pre>
+            <aside class="notes" data-markdown>
+              - defines the default orientation for the application
+              - also has "landscape" or "any" values
+            </aside>
+          </section>
+
+          <section>
+            <h2>scope</h2>
+            <pre><code data-trim data-noescape>
+{
+  "name": "8th Light",
+  "short_name": "8L",
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "white",
+  "description": "We craft software that is beautiful,
+   durable and shows pride in our worksmanship.",
+  "dir": "ltr",
+  "lang": "en-GB",
+  "orientation": "portrait",
+  <mark>"scope": "/myapp/",</mark>
+  "icons": [{
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]
+}
+            </code></pre>
+            <aside class="notes" data-markdown>
+              - scope is what holds the individual pages together as an app
+              - navigating outside of the scope means leaving the app
+              - normally an HTTP client, like a browser, will not know which pages belong together as a website. Each requested URL is seen as a stand alone. It's a convention to put files that belong together into the same folder but the client won't understand the context.
+            </aside>
+          </section>
+
+          <section>
+            <h2>icons</h2>
+            <pre><code data-trim data-noescape>
+{
+  "orientation": "portrait",
+  "scope": "/myapp/",
+  <mark>"icons": [{
+  "src": "images/touch/homescreen48.png",
+  "sizes": "48x48",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen72.png",
+  "sizes": "72x72",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen144.png",
+  "sizes": "144x144",
+  "type": "image/png"
+  }, {
+  "src": "images/touch/homescreen192.png",
+  "sizes": "192x192",
+  "type": "image/png"
+  }]</mark>
+}
+            </code></pre>
+            <aside class="notes" data-markdown>
+              - an array of icons which represent the application for example on a homescreen or within an OS's task switcher or system preferences.
+            </aside>
+          </section>
+          <section>
+            <h2>Spash screen</h2>
+             <aside class="notes" data-markdown>
+               - just another comment about the splash screen
+               - it is auto-generated using some of the properties from the manifest file: name, background-color and an icon from the icon array.
+            </aside>
+          </section>
+        </section>
+        <section>
+          <h2>Let's look at a real life manifest file on the Guardian developer blog.</h2>
+             <aside class="notes" data-markdown>
+               - you can see that they have some of the elements that I described above.
+               - and they also have a service worker, which leads me to my next topic!
+            </aside>
+        </section>
+        <section>
+          <section>
+            <h2>Service Worker</h2>
+            <p class ="fragment">- a background script run by the browser</p>
+            <p class ="fragment">- a proxy between your client application and the network</p>
+            <p class ="fragment">- it can manage a cache of responses</p>
+            <p class ="fragment">- only works over HTTPS</p>
+            <aside class="notes" data-markdown>
+              - can intercept and handle network requests
+              - cannot access the DOM directly but can communicate with your other JavaScript via the postMessage() interface
+              - it is not tied to a specific web page
+              - HTTPS for security reasons. Service workers let you hijack connections and change HTTP responses. Powerful stuff and with great power comes great responsiblity. To make sure it can't be tampered with, you can use it over HTTPS only.
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>And why would you use it?</h2>
+          </section>
+          <section>
+            <h2>You could use it to...</h2>
+            <p class ="fragment">- enhance online performance</p>
+            <p class ="fragment">- enable offline browsing</p>
+            <p class ="fragment">- send push notifications</p>
+            <p class ="fragment">- allow background data synchronisation</p>
+            <aside class="notes" data-markdown>
+              Enhanced online experience
+
+              - by controlling the caching of content, so that it doesn't need to download certain files every time (for example stylesheets or javascript)
+              - could implement a network strategy that optimises the balance between cached content and "fresh content"
+              - fresh content would be your latest blog articles; cached content would be your style sheets and application shell for example.
+              - pre-service worker there was (and still is) something called AppCache. Works in all browsers but Chrome, Firefox are planning to stop support for it. There were issues with it e.g. AppCache can't be partially updated, there were security issues with it and usability problems.
+
+              Offline experience
+
+              - you can define what happens when a user tries to use your site or app without a network connection. For example you could have an offline fallback page (the Guardian developer blog has a crossword puzzle)
+              - or you could download certain content that is in the user's click vicinity and if they go offline and click, they still see the pages loading
+              - obviously the user will have to have visited your website before while they were online. Service Worker is magic, but not THAT much magic.
+
+              Background data synchronisation
+
+              - service worker can be started up even when the user isn't on the website, so it can update its cache.
+              - but from what I've read this capability is not available yet
+
+              And what do I hear you screaming?
+            </aside>
+          </section>
+        </section>
+        <section>
+          <h2>Lifecycle of a service worker</h2>
+          <img  src="sw-lifecycle.png" >
+          <aside class="notes" data-markdown>
+            - if your browser doesn't have a service worker yet for the website, then it needs to connect itself up first. It creates an install event, that we can listen for in our code.
+            - during install step we typically cache some assets like stylesheet or front end JS file
+
+            - if any files fail to download, the installation step will fail and the service worker won't activate. Good thing: you can trust that your static assets are available when the service worker gets used.
+
+            - when your browser sees a new service worker, after it installs, it activates it, triggering the activate event.
+            - during the activate phase, clean up of previous versions of the service worker and get rid of old caches
+            - after activation, the service worker will deal with all pages in its remit
+            - then the service worker will be idle and either be terminated to save memory
+            - or it will deal with any fetch events (when a network request is made or a message is received)
+          </aside>
+        </section>
+        <section>
+          <h2>Demo time!</h2>
+        </section>
+        <section>
+          <h2>Any questions?</h2>
+        </section>
+        <section>
+          <h2>Thank you!</h2>
         </section>
       </div>
     </div>
